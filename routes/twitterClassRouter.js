@@ -76,7 +76,7 @@ const {getTimeToTweets,
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
     } = require("../models/twitterClassModels");
-const { generateTwitterClassAndPush } = require("../twitterAccounts/generateTwitterClasses");
+
 
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -754,16 +754,7 @@ router.get("/twitterClass/personality_List", async function (req, res) {
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-router.post("/twitterClass/generate_Twitter_Class_And_Push", async function (req, res) {
-  try {
-    const { loginNameTwitter, passwordTwitter, email } = req.body;
-    const result = await generateTwitterClassAndPush( loginNameTwitter, passwordTwitter, email );
-    return res.json({ success: true, payload: result });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ success: false, error: error.message });
-  }
-});
+
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 module.exports = router;

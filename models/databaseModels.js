@@ -1,5 +1,4 @@
 const pool = require("../database/config.js");
-const { insertIntensivity } = require("./twitterClassModels.js");
 
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
