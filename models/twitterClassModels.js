@@ -3,9 +3,19 @@ const pool = require("../database/config.js");
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-async function getTimeToTweets(loginNameTwitter) {
+async function getTimeToTweets() {
   try{
-    const sqlQuery = `SELECT * FROM timeToTweets WHERE loginNameTwitter= '${loginNameTwitter}' ORDER BY loginnametwitter, hours, minutes ASC;`;
+    const sqlQuery = `SELECT * FROM timeToTweets ORDER BY loginnametwitter, hours, minutes ASC;`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
+async function getTimeToTweetsAllBatches() {
+  try{
+    const sqlQuery = `SELECT * FROM timeToTweets WHERE email LIKE '%batch%' ORDER BY loginnametwitter, hours, minutes ASC;`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
     return links;
@@ -65,9 +75,9 @@ async function updateTimeToTweetsSpecific(loginNameTwitter, hours, minutes, upda
 }
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-async function getTimeToLikes(loginNameTwitter) {
+async function getTimeToLikes() {
   try{
-    const sqlQuery = `SELECT * FROM timeToLikes WHERE loginNameTwitter= '${loginNameTwitter}' ORDER BY loginnametwitter, hours, minutes ASC;`;
+    const sqlQuery = `SELECT * FROM timeToLikes ORDER BY loginnametwitter, hours, minutes ASC;`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
     return links;
@@ -75,6 +85,18 @@ async function getTimeToLikes(loginNameTwitter) {
     console.error(error);
   }
 }
+
+async function getTimeToLikesAllBatches() {
+  try{
+    const sqlQuery = `SELECT * FROM timeToLikes WHERE email LIKE '%batch%' ORDER BY loginnametwitter, hours, minutes ASC;`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
+
 async function getTimeToLikesByEmail(email) {
   try{
     const sqlQuery = `SELECT * FROM timeToLikes WHERE email= '${email}' ORDER BY loginnametwitter, hours, minutes ASC;`;
@@ -127,9 +149,19 @@ async function updateTimeToLikesSpecific(loginNameTwitter, hours, minutes, updat
 }
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-async function getTimeToRetweets(loginNameTwitter) {
+async function getTimeToRetweets() {
   try{
-    const sqlQuery = `SELECT * FROM timeToRetweets WHERE loginNameTwitter= '${loginNameTwitter}' ORDER BY loginnametwitter, hours, minutes ASC;`;
+    const sqlQuery = `SELECT * FROM timeToRetweets ORDER BY loginnametwitter, hours, minutes ASC;`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
+async function getTimeToRetweetsAllBatches() {
+  try{
+    const sqlQuery = `SELECT * FROM timeToRetweets WHERE email LIKE '%batch%' ORDER BY loginnametwitter, hours, minutes ASC;`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
     return links;
@@ -189,9 +221,9 @@ async function updateTimeToRetweetsSpecific(loginNameTwitter, hours, minutes, up
 }
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-async function getTimeToComments(loginNameTwitter) {
+async function getTimeToComments() {
   try{
-    const sqlQuery = `SELECT * FROM timeToComments WHERE loginNameTwitter= '${loginNameTwitter}' ORDER BY loginnametwitter, hours, minutes ASC;`;
+    const sqlQuery = `SELECT * FROM timeToComments ORDER BY loginnametwitter, hours, minutes ASC;`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
     return links;
@@ -199,6 +231,18 @@ async function getTimeToComments(loginNameTwitter) {
     console.error(error);
   }
 }
+
+async function getTimeToCommentsAllBatches() {
+  try{
+    const sqlQuery = `SELECT * FROM timeToComments WHERE email LIKE '%batch%' ORDER BY loginnametwitter, hours, minutes ASC;`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
+
 async function getTimeToCommentsByEmail(email) {
   try{
     const sqlQuery = `SELECT * FROM timeToComments WHERE email= '${email}' ORDER BY loginnametwitter, hours, minutes ASC;`;
@@ -386,6 +430,16 @@ async function updatePersonality(loginNameTwitter, personality) {
 async function getIntensivity() {
   try{
     const sqlQuery = `SELECT * FROM intensivity ORDER BY id ASC;`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
+async function getIntensivityAllBatches() {
+  try{
+    const sqlQuery = `SELECT * FROM intensivity WHERE email LIKE '%batch%' ORDER BY id ASC;`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
     return links;
@@ -652,6 +706,7 @@ async function getPersonalityList() {
 
 module.exports = {
                 getTimeToTweets,
+            getTimeToTweetsAllBatches,
             getTimeToTweetsByEmail,
             insertTimeToTweets,
             deleteTimeToTweets,
@@ -659,6 +714,7 @@ module.exports = {
             updateTimeToTweetsSpecific,
             ////////////////////////////////////////////////
                 getTimeToLikes,
+            getTimeToLikesAllBatches,
             getTimeToLikesByEmail,
             insertTimeToLikes,
             deleteTimeToLikes,
@@ -666,6 +722,7 @@ module.exports = {
             updateTimeToLikesSpecific,
             ////////////////////////////////////////////////
                 getTimeToRetweets,
+            getTimeToRetweetsAllBatches,
             getTimeToRetweetsByEmail,
             insertTimeToRetweets,
             deleteTimeToRetweets,
@@ -673,6 +730,7 @@ module.exports = {
             updateTimeToRetweetsSpecific,
             ////////////////////////////////////////////////
                 getTimeToComments,
+            getTimeToCommentsAllBatches,
             getTimeToCommentsByEmail,
             insertTimeToComments,
             deleteTimeToComments,
@@ -698,6 +756,7 @@ module.exports = {
             updatePersonality,
             ////////////////////////////////////////////////
             getIntensivity,
+            getIntensivityAllBatches,
             getIntensivityByUsername,
             getIntensivityByEmail,
             insertIntensivity,

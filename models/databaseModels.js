@@ -14,6 +14,18 @@ async function getLoginData() {
 }
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+async function getLoginDataAllBatches() {
+  try{
+    const sqlQuery = `SELECT * FROM loginData WHERE email LIKE '%batch%';`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error)
+  }
+}
+///////////////////////////////////////////////////////////////////
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 async function getLoginDataFromEmail(email) {
   try{
     const sqlQuery = `SELECT * FROM loginData WHERE email='${email}' ORDER BY id ASC;`;
@@ -64,6 +76,16 @@ async function getUserNameUsedForTweets(loginNameTwitter, personality) {
 async function getAllUserNameUsedForTweets() {
   try{
     const sqlQuery = `SELECT * FROM userContent WHERE purpose='userNameUsedForTweets';`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
+async function getUserNameUsedForTweetsAllBatches() {
+  try{
+    const sqlQuery = `SELECT * FROM userContent WHERE purpose='userNameUsedForTweets' AND email LIKE '%batch%';`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
     return links;
@@ -310,6 +332,17 @@ async function getAllUserContent() {
     console.error(error)
   }
 }
+async function getUserContentAllBatches() {
+  try{
+    const sqlQuery = `SELECT * FROM userContent WHERE purpose = 'userContent' AND email LIKE '%batch%';`;
+    const result = await pool.query(sqlQuery);
+    let links = result.rows;
+    links = links.map(userContentMap);
+    return links;
+  }catch(error){
+    console.error(error)
+  }
+}
 async function getUserContentByEmail(email) {
   try{
     const sqlQuery = `SELECT * FROM userContent WHERE email= '${email}' AND purpose='userContent';`;
@@ -396,12 +429,14 @@ async function updateUserContentLastTimeFetched(username, lastTimeFetched) {
 
 module.exports = {
   getLoginData,
+  getLoginDataAllBatches,
   getLoginDataFromEmail,
   checkLoginData,
   insertLoginData,
 ////////////////////////////////////////////////////
   getUserNameUsedForTweets,
   getAllUserNameUsedForTweets,
+  getUserNameUsedForTweetsAllBatches,
   getUserNameUsedForTweetsByEmail,
   checkUserNameUsedForTweets,
   insertUserNameUsedForTweets,
@@ -429,6 +464,7 @@ module.exports = {
 ////////////////////////////////////////////////////
   getUserContent,
   getAllUserContent,
+  getUserContentAllBatches,
   getUserContentByEmail,
   checkUserContent,
   insertUserContent,

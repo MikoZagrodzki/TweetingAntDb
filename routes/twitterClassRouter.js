@@ -71,7 +71,12 @@ const {getTimeToTweets,
     insertRephraseAttack,
     deleteRephraseAttackSpecific,
 ////////////////////////////////////////////////////
-    getPersonalityList
+    getPersonalityList,
+    getIntensivityAllBatches,
+    getTimeToTweetsAllBatches,
+    getTimeToLikesAllBatches,
+    getTimeToRetweetsAllBatches,
+    getTimeToCommentsAllBatches
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -81,10 +86,19 @@ const {getTimeToTweets,
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-router.post("/twitterClass/getTimeToTweets", async function (req, res) {
+router.get("/twitterClass/getTimeToTweets", async function (req, res) {
   try {
-    const { loginNameTwitter } = req.body;
-    const result = await getTimeToTweets(loginNameTwitter);
+    const result = await getTimeToTweets();
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.get("/twitterClass/getTimeToTweetsAllBatches", async function (req, res) {
+  try {
+    const result = await getTimeToTweetsAllBatches();
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -150,10 +164,19 @@ router.post("/twitterClass/updateTimeToTweetsSpecific", async function (req, res
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-router.post("/twitterClass/getTimeToLikes", async function (req, res) {
+router.get("/twitterClass/getTimeToLikes", async function (req, res) {
   try {
-    const { loginNameTwitter } = req.body;
-    const result = await getTimeToLikes(loginNameTwitter);
+    const result = await getTimeToLikes();
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.get("/twitterClass/getTimeToLikesAllBatches", async function (req, res) {
+  try {
+    const result = await getTimeToLikesAllBatches();
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -219,10 +242,19 @@ router.post("/twitterClass/updateTimeToLikesSpecific", async function (req, res)
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-router.post("/twitterClass/getTimeToRetweets", async function (req, res) {
+router.get("/twitterClass/getTimeToRetweets", async function (req, res) {
   try {
-    const { loginNameTwitter } = req.body;
-    const result = await getTimeToRetweets(loginNameTwitter);
+    const result = await getTimeToRetweets();
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.get("/twitterClass/getTimeToRetweetsAllBatches", async function (req, res) {
+  try {
+    const result = await getTimeToRetweetsAllBatches();
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -288,10 +320,19 @@ router.post("/twitterClass/updateTimeToRetweetsSpecific", async function (req, r
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-router.post("/twitterClass/getTimeToComments", async function (req, res) {
+router.get("/twitterClass/getTimeToComments", async function (req, res) {
   try {
-    const { loginNameTwitter } = req.body;
-    const result = await getTimeToComments(loginNameTwitter);
+    const result = await getTimeToComments();
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.get("/twitterClass/getTimeToCommentsAllBatches", async function (req, res) {
+  try {
+    const result = await getTimeToCommentsAllBatches();
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -510,6 +551,16 @@ router.post("/twitterClass/updatePersonality", async function (req, res) {
 router.get("/twitterClass/getIntensivity", async function (req, res) {
   try {
     const result = await getIntensivity();
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.get("/twitterClass/getIntensivityAllBatches", async function (req, res) {
+  try {
+    const result = await getIntensivityAllBatches();
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);

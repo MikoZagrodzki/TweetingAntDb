@@ -44,6 +44,9 @@ const {
     updateUserContentLastTimeFetched,
     getUserContentIsActive,
     getAllUserNameUsedForTweets,
+    getLoginDataAllBatches,
+    getUserNameUsedForTweetsAllBatches,
+    getUserContentAllBatches,
 ////////////////////////////////////////////////////
 } = require("../models/databaseModels");
 
@@ -54,6 +57,16 @@ const {
 router.get("/database/login_Data", async function (req, res) {
   try {
     const result = await getLoginData();
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.get("/database/login_Data_All_Batches", async function (req, res) {
+  try {
+    const result = await getLoginDataAllBatches();
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -99,8 +112,8 @@ router.post("/database/insert_login_Data", async function (req, res) {
 
 router.post("/database/user_Name_Used_For_Tweets", async function (req, res) {
   try {
-    const { loginNameTwitter } = req.body;
-    const result = await getUserNameUsedForTweets(loginNameTwitter);
+    const { loginNameTwitter, personality } = req.body;
+    const result = await getUserNameUsedForTweets(loginNameTwitter, personality);
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -111,6 +124,16 @@ router.post("/database/user_Name_Used_For_Tweets", async function (req, res) {
 router.get("/database/user_Name_Used_For_Tweets_All", async function (req, res) {
   try {
     const result = await getAllUserNameUsedForTweets();
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.get("/database/user_Name_Used_For_Tweets_All_Batches", async function (req, res) {
+  try {
+    const result = await getUserNameUsedForTweetsAllBatches();
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -365,7 +388,17 @@ router.post("/database/user_Content", async function (req, res) {
 
 router.get("/database/user_Content_All", async function (req, res) {
   try {
-    const result = await getAllUserContent;
+    const result = await getAllUserContent();
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.get("/database/user_Content_All_Batches", async function (req, res) {
+  try {
+    const result = await getUserContentAllBatches();
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
