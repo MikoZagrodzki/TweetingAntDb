@@ -323,7 +323,7 @@ async function getUserContent(loginNameTwitter, personality) {
 }
 async function getAllUserContent() {
   try{
-    const sqlQuery = `SELECT * FROM userContent;`;
+    const sqlQuery = `SELECT * FROM userContent WHERE purpose='userContent';`;
     const result = await pool.query(sqlQuery);
     let links = result.rows;
     links = links.map(userContentMap);
