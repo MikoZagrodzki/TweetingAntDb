@@ -337,7 +337,7 @@ async function getUserContentAllBatches() {
     const sqlQuery = `SELECT * FROM userContent WHERE purpose = 'userContent' AND email LIKE '%batch%';`;
     const result = await pool.query(sqlQuery);
     let links = result.rows;
-    links = links.map(userContentMap);
+    // links = links.map(userContentMap);
     return links;
   }catch(error){
     console.error(error)
