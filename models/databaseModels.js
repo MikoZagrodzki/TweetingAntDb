@@ -418,6 +418,63 @@ async function updateUserContentLastTimeFetched(username, lastTimeFetched) {
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+async function getAllScrapedTweets() {
+  try{
+    const sqlQuery = `SELECT * FROM scrapedtweets;`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
+
+async function updateScrapedTweetText(tweeturl, tweettext) {
+  try{
+    const sqlQuery = `UPDATE scrapedtweets SET tweettextchatgpt='${tweettext}' WHERE tweeturl='${tweeturl}';`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
+
+async function updateScrapedTweetIsAprroved(tweeturl, isApproved) {
+  try{
+    const sqlQuery = `UPDATE scrapedtweets SET isapproved='${isApproved}' WHERE tweeturl='${tweeturl}';`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
+
+async function updateScrapedTweetPicture(tweeturl) {
+  try{
+    const sqlQuery = `UPDATE scrapedtweets SET tweetpictureurl=${null} WHERE tweeturl='${tweeturl}';`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
+
+async function updateScrapedTweetVideo(tweeturl) {
+  try{
+    const sqlQuery = `UPDATE scrapedtweets SET lasttimefetched=${null} WHERE tweeturl='${tweeturl}';`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
+
+
+
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -473,7 +530,11 @@ module.exports = {
   updateUserContentIsActive,
   updateUserContentLastTimeFetched,
 ////////////////////////////////////////////////////
-
+  getAllScrapedTweets,
+  updateScrapedTweetText,
+  updateScrapedTweetIsAprroved,
+  updateScrapedTweetPicture,
+  updateScrapedTweetVideo
 ////////////////////////////////////////////////////
 
 };
