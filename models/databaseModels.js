@@ -429,9 +429,9 @@ async function getAllScrapedTweets() {
   }
 }
 
-async function updateScrapedTweetText(tweeturl, tweettext) {
+async function updateScrapedTweetText(tweeturl, updatedText, tweettext) {
   try{
-    const sqlQuery = `UPDATE scrapedtweets SET tweettextchatgpt='${tweettext}' WHERE tweeturl='${tweeturl}';`;
+    const sqlQuery = `UPDATE scrapedtweets SET tweettextchatgpt='${updatedText}' WHERE tweeturl='${tweeturl}' AND tweettext=${tweettext};`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
     return links;
@@ -440,9 +440,9 @@ async function updateScrapedTweetText(tweeturl, tweettext) {
   }
 }
 
-async function updateScrapedTweetIsAprroved(tweeturl, isApproved) {
+async function updateScrapedTweetIsAprroved(tweeturl, isApproved, tweettext) {
   try{
-    const sqlQuery = `UPDATE scrapedtweets SET isapproved='${isApproved}' WHERE tweeturl='${tweeturl}';`;
+    const sqlQuery = `UPDATE scrapedtweets SET isapproved='${isApproved}' WHERE tweeturl='${tweeturl}' AND tweettext=${tweettext};`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
     return links;
@@ -451,9 +451,9 @@ async function updateScrapedTweetIsAprroved(tweeturl, isApproved) {
   }
 }
 
-async function updateScrapedTweetPicture(tweeturl) {
+async function updateScrapedTweetPicture(tweeturl, tweettext) {
   try{
-    const sqlQuery = `UPDATE scrapedtweets SET tweetpictureurl=${null} WHERE tweeturl='${tweeturl}';`;
+    const sqlQuery = `UPDATE scrapedtweets SET tweetpictureurl=NULL WHERE tweeturl='${tweeturl}' AND tweettext=${tweettext};`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
     return links;
@@ -462,9 +462,9 @@ async function updateScrapedTweetPicture(tweeturl) {
   }
 }
 
-async function updateScrapedTweetVideo(tweeturl) {
+async function updateScrapedTweetVideo(tweeturl, tweettext) {
   try{
-    const sqlQuery = `UPDATE scrapedtweets SET lasttimefetched=${null} WHERE tweeturl='${tweeturl}';`;
+    const sqlQuery = `UPDATE scrapedtweets SET tweetvideourl=NULL WHERE tweeturl='${tweeturl}' AND tweettext=${tweettext};`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
     return links;

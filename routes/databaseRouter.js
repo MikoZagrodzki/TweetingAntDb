@@ -502,8 +502,8 @@ router.get("/database/get_All_Scraped_tweets", async function (req, res) {
 
 router.post("/database/update_Scraped_Tweet_Text", async function (req, res) {
   try {
-    const { tweeturl, tweettext }= req.body;
-    const result = await updateScrapedTweetText(tweeturl, tweettext);
+    const { tweeturl, updatedText, tweettext }= req.body;
+    const result = await updateScrapedTweetText(tweeturl, updatedText, tweettext);
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -513,8 +513,8 @@ router.post("/database/update_Scraped_Tweet_Text", async function (req, res) {
 
 router.post("/database/update_Scraped_Tweet_IsAprroved", async function (req, res) {
   try {
-    const { tweeturl, isApproved }= req.body;
-    const result = await updateScrapedTweetIsAprroved(tweeturl, isApproved);
+    const { tweeturl, isApproved, tweettext }= req.body;
+    const result = await updateScrapedTweetIsAprroved(tweeturl, isApproved, tweettext);
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -524,8 +524,8 @@ router.post("/database/update_Scraped_Tweet_IsAprroved", async function (req, re
 
 router.post("/database/update_Scraped_Tweet_Picture", async function (req, res) {
   try {
-    const { tweeturl }= req.body;
-    const result = await updateScrapedTweetPicture(tweeturl);
+    const { tweeturl, tweettext }= req.body;
+    const result = await updateScrapedTweetPicture(tweeturl, tweettext);
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -535,8 +535,8 @@ router.post("/database/update_Scraped_Tweet_Picture", async function (req, res) 
 
 router.post("/database/update_Scraped_Tweet_Video", async function (req, res) {
   try {
-    const { tweeturl }= req.body;
-    const result = await updateScrapedTweetVideo(tweeturl);
+    const { tweeturl, tweettext }= req.body;
+    const result = await updateScrapedTweetVideo(tweeturl, tweettext);
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
