@@ -502,8 +502,8 @@ router.get("/database/get_All_Scraped_tweets", async function (req, res) {
 
 router.post("/database/update_Scraped_Tweet_Text", async function (req, res) {
   try {
-    const { tweeturl, updatedText, tweettext }= req.body;
-    const result = await updateScrapedTweetText(tweeturl, updatedText, tweettext);
+    const { tweeturl, updatedText, sqlId }= req.body;
+    const result = await updateScrapedTweetText(tweeturl, updatedText, sqlId);
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -513,8 +513,8 @@ router.post("/database/update_Scraped_Tweet_Text", async function (req, res) {
 
 router.post("/database/update_Scraped_Tweet_IsAprroved", async function (req, res) {
   try {
-    const { tweeturl, isApproved, tweettext }= req.body;
-    const result = await updateScrapedTweetIsAprroved(tweeturl, isApproved, tweettext);
+    const { tweeturl, isApproved, sqlId }= req.body;
+    const result = await updateScrapedTweetIsAprroved(tweeturl, isApproved, sqlId);
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -524,8 +524,8 @@ router.post("/database/update_Scraped_Tweet_IsAprroved", async function (req, re
 
 router.post("/database/update_Scraped_Tweet_Picture", async function (req, res) {
   try {
-    const { tweeturl, tweettext }= req.body;
-    const result = await updateScrapedTweetPicture(tweeturl, tweettext);
+    const { tweeturl, sqlId }= req.body;
+    const result = await updateScrapedTweetPicture(tweeturl, sqlId);
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
@@ -535,8 +535,8 @@ router.post("/database/update_Scraped_Tweet_Picture", async function (req, res) 
 
 router.post("/database/update_Scraped_Tweet_Video", async function (req, res) {
   try {
-    const { tweeturl, tweettext }= req.body;
-    const result = await updateScrapedTweetVideo(tweeturl, tweettext);
+    const { tweeturl, sqlId }= req.body;
+    const result = await updateScrapedTweetVideo(tweeturl, sqlId);
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
