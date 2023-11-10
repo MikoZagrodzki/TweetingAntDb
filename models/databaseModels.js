@@ -431,6 +431,13 @@ async function getAllScrapedTweets() {
 
 async function updateScrapedTweetText(tweeturl, updatedText, sqlId) {
   try{
+    if(updatedText){
+      updatedText = updatedText.replace(/'/g, "''");
+    }
+    console.log('Updated Text:', updatedText);
+    console.log('Tweet URL:', tweeturl);
+    console.log('SQL ID:', sqlId);    
+
     const sqlQuery = `UPDATE scrapedtweets SET tweettextchatgpt='${updatedText}' WHERE tweeturl='${tweeturl}' AND id=${sqlId};`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
