@@ -553,6 +553,7 @@ router.post("/database/tweet_with_personality", async function (req, res) {
   try {
     const { personality, tweet }= req.body;
     const result = await tweetPromptEnginered(personality, tweet);
+    // const result = await getChatGpt("how you doing?")
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
