@@ -54,6 +54,7 @@ const {
     updateScrapedTweetVideo,
 ////////////////////////////////////////////////////
 } = require("../models/databaseModels");
+const { tweetPromptEnginered } = require("../gptFunctionalities/tweetWithPersonality.js");
 
 
 ///////////////////////////////////////////////////////////////////
@@ -537,6 +538,20 @@ router.post("/database/update_Scraped_Tweet_Video", async function (req, res) {
   try {
     const { tweeturl, sqlId }= req.body;
     const result = await updateScrapedTweetVideo(tweeturl, sqlId);
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+///////////////////////////////////////////////////////////////////
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+router.post("/database/tweet_with_personality", async function (req, res) {
+  try {
+    const { personality, tweet }= req.body;
+    const result = await tweetPromptEnginered(personality, tweet);
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);
