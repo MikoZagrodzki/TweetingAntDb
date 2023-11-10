@@ -55,6 +55,7 @@ const {
 ////////////////////////////////////////////////////
 } = require("../models/databaseModels");
 const { tweetPromptEnginered } = require("../gptFunctionalities/tweetWithPersonality.js");
+const getChatGpt = require("../gptFunctionalities/fetchChatGpt.js");
 
 
 ///////////////////////////////////////////////////////////////////

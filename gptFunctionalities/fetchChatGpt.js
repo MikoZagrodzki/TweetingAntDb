@@ -24,7 +24,6 @@ const getChatGpt = async (prompt) => {
     });
     chatGptCompletion = chatGptCompletion.data.choices[0].message.content;
 
-      
     return chatGptCompletion;
   } catch (error) {
     console.error("getChatGpt", error.message);
