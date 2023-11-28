@@ -434,10 +434,6 @@ async function updateScrapedTweetText(tweeturl, updatedText, sqlId) {
     if(updatedText){
       updatedText = updatedText.replace(/'/g, "''");
     }
-    console.log('Updated Text:', updatedText);
-    console.log('Tweet URL:', tweeturl);
-    console.log('SQL ID:', sqlId);    
-
     const sqlQuery = `UPDATE scrapedtweets SET tweettextchatgpt='${updatedText}' WHERE tweeturl='${tweeturl}' AND id=${sqlId};`;
     const result = await pool.query(sqlQuery);
     const links = result.rows;
@@ -481,9 +477,23 @@ async function updateScrapedTweetVideo(tweeturl, sqlId) {
 }
 
 
-
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+async function insertAnalyticsUrlOrUpdateDate(url, tweetOrComment) {
+  try{
+    const sqlQuery = `INSERT INTO tweetanalytics (tweeturl, tweetorcomment)
+                      VALUES ('${url}', '${tweetOrComment}')
+                      ON CONFLICT (tweeturl, tweetorcomment)
+                      DO UPDATE SET tweetcreatedate = NOW()
+                      RETURNING *;`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error);
+  }
+}
 
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -541,7 +551,8 @@ module.exports = {
   updateScrapedTweetText,
   updateScrapedTweetIsAprroved,
   updateScrapedTweetPicture,
-  updateScrapedTweetVideo
+  updateScrapedTweetVideo,
 ////////////////////////////////////////////////////
+  insertAnalyticsUrlOrUpdateDate
 
 };

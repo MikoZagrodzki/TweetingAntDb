@@ -52,6 +52,7 @@ const {
     updateScrapedTweetIsAprroved,
     updateScrapedTweetPicture,
     updateScrapedTweetVideo,
+    insertAnalyticsUrlOrUpdateDate,
 ////////////////////////////////////////////////////
 } = require("../models/databaseModels");
 const { tweetPromptEnginered } = require("../gptFunctionalities/tweetWithPersonality.js");
@@ -561,6 +562,19 @@ router.post("/database/tweet_with_personality", async function (req, res) {
   }
 });
 
+///////////////////////////////////////////////////////////////////
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+router.post("/database/insert_Analytics_Url_Or_Update_Date", async function (req, res) {
+  try {
+    const { url, tweetOrComment }= req.body;
+    const result = await insertAnalyticsUrlOrUpdateDate(url, tweetOrComment);
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
 
 
 
