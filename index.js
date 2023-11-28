@@ -17,6 +17,14 @@ app.all(function (req, res, next) {
 app.use("/", databaseRouter);
 app.use("/", twitterClassRouter);
 
+// Serve static files (e.g., index.html) from the 'public' directory
+app.use(express.static(path.join(__dirname, "public")));
+
+// Catch-all route to serve 'index.html'
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 const port = process.env.PORT || 3002;
 
 app.listen(port, () => console.log(`Server listening on port ${port}`));
