@@ -53,6 +53,7 @@ const {
     updateScrapedTweetPicture,
     updateScrapedTweetVideo,
     insertAnalyticsUrlOrUpdateDate,
+    getEmailsAndPersonalitiesFromLoginData,
 ////////////////////////////////////////////////////
 } = require("../models/databaseModels");
 const { tweetPromptEnginered } = require("../gptFunctionalities/tweetWithPersonality.js");
@@ -108,6 +109,16 @@ router.post("/database/insert_login_Data", async function (req, res) {
   try {
     const { email, loginNameTwitter, passwordTwitter } = req.body;
     const result = await insertLoginData(email,loginNameTwitter,passwordTwitter);
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.get("/database/get_Emails_And_Personalities_From_Login_Data", async function (req, res) {
+  try {
+    const result = await getEmailsAndPersonalitiesFromLoginData();
     return res.json({ success: true, payload: result });
   } catch (error) {
     console.error(error);

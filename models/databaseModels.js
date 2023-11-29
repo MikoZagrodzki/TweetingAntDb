@@ -56,6 +56,16 @@ async function insertLoginData(email, loginNameTwitter, passwordTwitter) {
     console.error(error)
   }
 }
+async function getEmailsAndPersonalitiesFromLoginData() {
+  try{
+    const sqlQuery = `SELECT email, personality FROM logindata;`;
+    const result = await pool.query(sqlQuery);
+    const links = result.rows;
+    return links;
+  }catch(error){
+    console.error(error)
+  }
+}
 ///////////////////////////////////////////////////////////////////
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const usernameUsedForTweetsMap = (usernames) => {
@@ -507,6 +517,7 @@ module.exports = {
   getLoginDataFromEmail,
   checkLoginData,
   insertLoginData,
+  getEmailsAndPersonalitiesFromLoginData,
 ////////////////////////////////////////////////////
   getUserNameUsedForTweets,
   getAllUserNameUsedForTweets,
