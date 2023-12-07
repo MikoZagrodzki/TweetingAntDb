@@ -88,7 +88,7 @@ async function personalityPromptSetter(personality, tweet) {
     `;
 
     function getRandomPrompt() {
-      const prompts = [prompt1, prompt2, prompt3, prompt4, prompt5, prompt6, prompt7, prompt8, ];
+      const prompts = [prompt1, prompt2, prompt3, prompt4, prompt5, prompt6, prompt7, prompt8 ];
       const randomIndex = Math.floor(Math.random() * prompts.length);
       return prompts[randomIndex];
     }

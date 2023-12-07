@@ -98,7 +98,7 @@ async function personalityPromptSetter(personality, tweet) {
     
 
     function getRandomPrompt() {
-      const prompts = [prompt1, prompt2, prompt3, prompt4, prompt5, prompt6, prompt7, prompt8, prompt9, prompt10, prompt11];
+      const prompts = [prompt1, prompt2, prompt3, prompt4, prompt5, prompt6, prompt7, prompt8];
       const randomIndex = Math.floor(Math.random() * prompts.length);
       return prompts[randomIndex];
     }
@@ -125,7 +125,7 @@ async function personalityPromptSetter(personality, tweet) {
         return getRandomPrompt();
     }
   } catch (error) {
-    console.error('personalityPromptSetter', error.message, `TWEET CONTEXT: `);
+    console.error('personalityPromptSetter', error.message);
   }
 }
 
