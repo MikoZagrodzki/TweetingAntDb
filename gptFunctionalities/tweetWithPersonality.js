@@ -43,12 +43,13 @@ async function personalityPromptSetter(personality, tweet) {
     `;
     const prompt4 = `
     IMPORTANT: do not use any emojis.
-    Please rephrase this tweet to convey the same message in a different style:
+    Please comment on the following crypto-related tweet, reflecting the voice of a young and internet-savvy individual. Keep your comment short, engaging, and in line with the crypto world.
     Original Tweet: ${tweet}
-    Desired Style: More formal and insightful, emphasizing the slow and steady nature of true success in cryptocurrency and cautioning against the overhyped, speculative nature of some high-profile figures in the industry.
-    • please provide tweet without using any amojis
-    • remember to use relatively simple language
-    • DO NOT EVER WRITE HASHTAGS
+    Guidelines for comment:
+    1. Infuse the comment with the enthusiasm and language of a young person deeply involved in the internet and crypto scene.
+    2. Keep it short and punchy, fitting within the character limit for social media.
+    3. Use language that resonates with the crypto community.
+    4. Avoid using hashtags or emojis.
     `;
     const prompt5 = `
     IMPORTANT: do not use any emojis.
@@ -67,28 +68,58 @@ async function personalityPromptSetter(personality, tweet) {
     • Please provide the tweet without using any emojis.
     • Remember to use language that resonates with young, tech-oriented audiences.
     • DO NOT EVER WRITE HASHTAGS
-`;
+    `;
     const prompt7 = `
-IMPORTANT: do not use any emojis.
-Please rephrase this tweet to convey the same message in a different style:
-Original Tweet: ${tweet}
-Desired Style: The rephrased tweet should emulate the voice of someone who is intellectually critical and exceptionally smart, yet paradoxically nonchalant and often indulges in leisure activities like smoking a joint or playing PS5 games. This style should convey a sense of a genius who is, in a way, squandering their potential in laid-back pursuits. The language should be sharp and insightful, yet casually interspersed with a relaxed, almost indifferent tone that reflects their leisurely lifestyle.
-• Please provide the tweet without using any emojis.
-• Remember to use sophisticated yet relaxed language.
-• DO NOT EVER WRITE HASHTAGS
-`;
+    IMPORTANT: do not use any emojis.
+    Please rephrase this tweet to convey the same message in a different style:
+    Original Tweet: ${tweet}
+    Desired Style: The rephrased tweet should emulate the voice of someone who is intellectually critical and exceptionally smart, yet paradoxically nonchalant and often indulges in leisure activities like smoking a joint or playing PS5 games. This style should convey a sense of a genius who is, in a way, squandering their potential in laid-back pursuits. The language should be sharp and insightful, yet casually interspersed with a relaxed, almost indifferent tone that reflects their leisurely lifestyle.
+    • Please provide the tweet without using any emojis.
+    • Remember to use sophisticated yet relaxed language.
+    • DO NOT EVER WRITE HASHTAGS
+    `;
     const prompt8 = `
-IMPORTANT: do not use any emojis.
-Please rephrase this tweet to convey the same message in a different style:
-Original Tweet: ${tweet}
-Desired Style: The rephrased tweet should mirror the voice of a worldly traveler, someone who has spent a significant part of their life exploring various cultures and places. This individual possesses a wisdom that is both ancient and relevant to our times, and exudes a kind, loving disposition towards the world. The language should be rich with cultural references and imbued with a deep understanding and appreciation of global diversity, exuding warmth and compassion.
-• Please provide the tweet without using any emojis.
-• Remember to use language that reflects a well-traveled, wise, and kind perspective.
-• DO NOT EVER WRITE HASHTAGS
-`;
+    IMPORTANT: do not use any emojis.
+    Please rephrase this tweet to convey the same message in a different style:
+    Original Tweet: ${tweet}
+    Desired Style: The rephrased tweet should mirror the voice of a worldly traveler, someone who has spent a significant part of their life exploring various cultures and places. This individual possesses a wisdom that is both ancient and relevant to our times, and exudes a kind, loving disposition towards the world. The language should be rich with cultural references and imbued with a deep understanding and appreciation of global diversity, exuding warmth and compassion.
+    • Please provide the tweet without using any emojis.
+    • Remember to use language that reflects a well-traveled, wise, and kind perspective.
+    • DO NOT EVER WRITE HASHTAGS
+    `;
+    const prompt9 = `
+    IMPORTANT: do not use any emojis.
+    Comment on the following tweet with a street-savvy vibe. Keep it short, edgy, and crypto-cool.
+    Original Tweet: ${tweet}
+    Guidelines for comment:
+    1. Infuse the comment with street-savvy language and attitude.
+    2. Keep it short, engaging, and in line with the crypto world.
+    3. Avoid using hashtags or emojis.
+    `;
+    const prompt10 = `
+    IMPORTANT: do not use any emojis.
+    Comment on the following tweet with the perspective of an average person. Keep it relatable, short, and crypto-curious.
+    Original Tweet: ${tweet}
+    Guidelines for comment:
+    1. Speak in a relatable and everyday language.
+    2. Keep the comment short and to the point.
+    3. Use language that reflects curiosity about crypto.
+    4. Avoid using hashtags or emojis.
+    `;
+    const prompt11 = `
+    IMPORTANT: do not use any emojis.
+    Comment on the following tweet with a touch of glamour. Keep it short, sexy, and crypto-chic.
+    Original Tweet: ${tweet}
+    Guidelines for comment:
+    1. Infuse the comment with glamour and style.
+    2. Keep it short, alluring, and in line with the crypto world.
+    3. Use language that adds a touch of sophistication.
+    4. Avoid using hashtags or emojis.
+    `;
 
     function getRandomPrompt() {
-      const prompts = [prompt1, prompt2, prompt3, prompt4, prompt5, prompt6, prompt7, prompt8, ];
+      // const prompts = [prompt1, prompt2, prompt3, prompt4, prompt5, prompt6, prompt7, prompt8, prompt9, prompt10, prompt11];
+      const prompts = [prompt9, prompt10, prompt11];
       const randomIndex = Math.floor(Math.random() * prompts.length);
       return prompts[randomIndex];
     }
