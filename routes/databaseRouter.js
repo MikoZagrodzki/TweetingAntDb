@@ -58,6 +58,7 @@ const {
 } = require("../models/databaseModels");
 const { tweetPromptEnginered } = require("../gptFunctionalities/tweetWithPersonality.js");
 const getChatGpt = require("../gptFunctionalities/fetchChatGpt.js");
+const { commentPromptEnginered } = require("../gptFunctionalities/commentWithPersonality.js");
 
 
 ///////////////////////////////////////////////////////////////////
@@ -565,6 +566,19 @@ router.post("/database/tweet_with_personality", async function (req, res) {
   try {
     const { personality, tweet }= req.body;
     const result = await tweetPromptEnginered(personality, tweet);
+    // const { tweet }= req.body;
+    // const result = await getChatGpt(`${tweet}`)
+    return res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.post("/database/comment_with_personality", async function (req, res) {
+  try {
+    const { personality, tweet }= req.body;
+    const result = await commentPromptEnginered(personality, tweet);
     // const { tweet }= req.body;
     // const result = await getChatGpt(`${tweet}`)
     return res.json({ success: true, payload: result });
