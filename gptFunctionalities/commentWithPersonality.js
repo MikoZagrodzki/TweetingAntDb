@@ -125,7 +125,7 @@ async function personalityPromptSetter(personality, tweet) {
         return getRandomPrompt();
     }
   } catch (error) {
-    console.error('personalityPromptSetter', error.message, `TWEET CONTEXT: ${tweetContext}`);
+    console.error('personalityPromptSetter', error.message, `TWEET CONTEXT: `);
   }
 }
 
