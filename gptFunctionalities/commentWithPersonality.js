@@ -13,7 +13,7 @@ async function personalityPromptSetter(personality, tweet) {
     • Infuse a tone that is informal humorous.
     • Highlight the main message with more engaging language.
     • Use vivid imagery or comparisons to make the point more relatable.
-    • Ensure the tweet is short, punchy, and fits within the character limit for social media.
+    • Ensure the comment is short, punchy, and fits within the character limit for social media.
     • Avoid technical jargon, and make it accessible to a general audience.
     • DO NOT EVER WRITE HASHTAGS
     • please provide comment without using any amojis
@@ -21,12 +21,12 @@ async function personalityPromptSetter(personality, tweet) {
     `;
     const prompt2 = `
     IMPORTANT: do not use any emojis.
-    Please take the original tweet provided and comment it to deliver the message with a blend of critical insight and motivational encouragement. The comment should challenge the reader to think differently and inspire them to take action towards personal growth and self-investment.
+    Please take the original tweet provided and comment it with a blend of critical insight and motivational encouragement. The comment should challenge the reader to think differently and inspire them to take action towards personal growth and self-investment.
     Original Tweet: ${tweet}
     Guidelines for comment:
     • Use a tone that combines a critical edge with a edginess.
     • Keep the message clear, direct, and suitable for social media's succinct communication style.
-    • Make sure the rewritten tweet is something that would stand out in a social media feed and spark thoughtful consideration
+    • Make sure the comment is something that would stand out in a social media feed and spark thoughtful consideration
     • please provide comment without using any amojis
     • remember to use relatively simple language
     • DO NOT EVER WRITE HASHTAGS
